@@ -1,0 +1,46 @@
+#%RAML 1.0
+title: test
+description: the raml for customer information.
+baseUri: http://api.e-bookmobile.com/{version}
+version: v1
+protocols:
+  - HTTP
+types:
+  customerREquest: !include Data-Types/customerDetails.raml
+  customerResponse: string
+/customer: 
+ post:
+  body:
+    application/json:
+      type: customerREquest
+  responses:
+    201:
+      body:
+        application/json:
+          type: customerResponse
+          
+ get:
+   responses:
+     200:
+      body: 
+       application/json: 
+        type: customerREquest
+ /{id}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: customerREquest
+    patch: 
+     body:
+      application/json:
+        type: customerREquest
+     responses:
+       202:
+         body:
+            application/json:
+              type: object
+              properties:
+                PR: string
+           
